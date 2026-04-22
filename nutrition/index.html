@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Healthy Eating Plan — Asian Health Services</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --green:#1B5E3B;--green-mid:#2E7D52;--green-lt:#EAF4EE;--green-bd:#B2D8C0;
+  --terra:#C05A2A;--terra-lt:#FBF0EA;--terra-bd:#E8C4AE;
+  --cream:#FDF8F2;--gold:#C9973A;--txt:#222;--txt2:#555;--txt3:#888;
+}
+body{font-family:sans-serif;background:#E8E8E0;}
+.wrap{max-width:390px;margin:0 auto;background:var(--cream);min-height:100vh;}
+.hdr{background:var(--green);color:white;padding:16px 20px 12px;}
+.hdr-org{font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.65;margin-bottom:3px;}
+.hdr-title{font-size:19px;font-weight:700;font-family:Georgia,serif;line-height:1.2;}
+.sbar{display:flex;background:#14482D;padding:9px 20px;gap:8px;align-items:center;}
+.sdot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+.sdot.done{background:var(--gold);color:white;}
+.sdot.active{background:white;color:var(--green);}
+.sdot.future{background:rgba(255,255,255,.2);color:rgba(255,255,255,.4);}
+.sline{flex:1;height:1px;background:rgba(255,255,255,.2);}
+.sline.done{background:var(--gold);}
+.screen{display:none;padding:18px 18px 32px;}
+.screen.active{display:block;}
+.intro{font-size:13px;color:var(--txt2);line-height:1.5;margin-bottom:14px;}
+.cat{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin:16px 0 8px;border-bottom:1.5px solid var(--green-bd);padding-bottom:4px;}
+.cat.terra{color:var(--terra);border-color:var(--terra-bd);}
+.cat-sub{color:var(--txt2);font-size:11px;text-transform:none;letter-spacing:0;border:none;margin-top:10px;}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.fbtn{background:white;border:1.5px solid var(--green-bd);border-radius:10px;padding:9px 10px;font-size:12.5px;color:var(--txt);cursor:pointer;text-align:left;display:flex;align-items:center;gap:7px;line-height:1.3;transition:border-color .12s,background .12s;}
+.fbtn:hover{border-color:var(--green-mid);}
+.fbtn.sel{background:var(--green-lt);border-color:var(--green-mid);color:var(--green);}
+.fbtn.terra-theme{border-color:var(--terra-bd);}
+.fbtn.terra-theme:hover{border-color:var(--terra);}
+.fbtn.terra-theme.sel{background:var(--terra-lt);border-color:var(--terra);color:var(--terra);}
+.chk{width:17px;height:17px;border-radius:4px;border:1.5px solid #ccc;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.fbtn.sel .chk{background:var(--green-mid);border-color:var(--green-mid);}
+.fbtn.terra-theme.sel .chk{background:var(--terra);border-color:var(--terra);}
+.fbtn.sel .chk::after,.fbtn.terra-theme.sel .chk::after{content:'';display:block;width:4px;height:8px;border-right:2px solid white;border-bottom:2px solid white;transform:rotate(40deg) translate(-1px,-1px);}
+.btn-p{width:100%;margin-top:20px;background:var(--green);color:white;border:none;border-radius:10px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;}
+.btn-p:disabled{opacity:.35;cursor:default;}
+.btn-s{width:100%;margin-top:9px;background:white;color:var(--green);border:1.5px solid var(--green-bd);border-radius:10px;padding:11px;font-size:13px;cursor:pointer;}
+.sec-hdr{display:flex;align-items:center;gap:8px;margin:4px 0 10px;}
+.sec-pill{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:3px 10px;border-radius:20px;}
+.sec-pill.add{background:var(--green-lt);color:var(--green);}
+.sec-pill.swap{background:var(--terra-lt);color:var(--terra);}
+.sec-divider{flex:1;height:1px;background:#E0E0D8;}
+.card{background:white;border:1.5px solid #DDE8E1;border-radius:11px;padding:12px 13px;margin-bottom:9px;cursor:pointer;display:flex;gap:11px;align-items:flex-start;transition:border-color .12s,background .12s;}
+.card:hover{border-color:var(--green-mid);}
+.card.add-card.committed{background:var(--green-lt);border-color:var(--green-mid);}
+.card.swap-card{border-color:#EAD9D0;}
+.card.swap-card:hover{border-color:var(--terra);}
+.card.swap-card.committed{background:var(--terra-lt);border-color:var(--terra);}
+.cchk{width:21px;height:21px;border-radius:50%;border:2px solid #ccc;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;}
+.card.add-card.committed .cchk{background:var(--green-mid);border-color:var(--green-mid);}
+.card.swap-card.committed .cchk{background:var(--terra);border-color:var(--terra);}
+.card.committed .cchk::after{content:'';display:block;width:5px;height:9px;border-right:2.5px solid white;border-bottom:2.5px solid white;transform:rotate(40deg) translate(-1px,-1px);}
+.card-label{font-size:11px;color:var(--txt3);margin-bottom:2px;}
+.card-label.add{color:var(--green-mid);}
+.card-label.swap{color:var(--terra);}
+.card-main{font-size:13.5px;color:var(--txt);line-height:1.4;font-weight:600;}
+.card-note{font-size:12px;color:var(--txt3);margin-top:3px;font-style:italic;line-height:1.4;}
+.universal-box{background:var(--green-lt);border:1.5px solid var(--green-bd);border-radius:10px;padding:12px 14px;margin-bottom:10px;}
+.ub-title{font-size:12px;font-weight:700;color:var(--green);margin-bottom:6px;}
+.ub-item{font-size:12.5px;color:#333;line-height:1.5;padding:3px 0;display:flex;gap:7px;}
+.ub-dot{width:6px;height:6px;border-radius:50%;background:var(--green-mid);flex-shrink:0;margin-top:6px;}
+.plan-box{background:var(--green);color:white;border-radius:12px;padding:16px 18px;margin-bottom:12px;}
+.plan-title{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.65;margin-bottom:10px;}
+.plan-item{display:flex;gap:9px;align-items:flex-start;margin-bottom:9px;}
+.plan-badge{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:10px;flex-shrink:0;margin-top:2px;}
+.plan-badge.add{background:rgba(255,255,255,.25);color:white;}
+.plan-badge.swap{background:rgba(201,151,58,.4);color:#FFE4A8;}
+.plan-txt{font-size:13px;line-height:1.4;}
+.remind{background:var(--terra-lt);border:1.5px solid var(--terra-bd);border-radius:11px;padding:14px;text-align:center;font-size:13px;color:#7A3818;line-height:1.5;}
+.none-msg{background:#F4F4EF;border-radius:9px;padding:14px;font-size:13px;color:var(--txt3);text-align:center;line-height:1.5;margin-bottom:10px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hdr">
+  <div class="hdr-org">Asian Health Services</div>
+  <div class="hdr-title">Your Healthy Eating Plan</div>
+</div>
+<div class="sbar" id="sbar">
+  <div class="sdot active" id="dot1">1</div>
+  <div class="sline" id="line1"></div>
+  <div class="sdot future" id="dot2">2</div>
+  <div class="sline" id="line2"></div>
+  <div class="sdot future" id="dot3">3</div>
+</div>
+
+<!-- STEP 1 -->
+<div class="screen active" id="s1">
+  <p class="intro">Check the foods you eat most often. We will make a plan just for you.</p>
+
+  <div class="cat">Vegetables I enjoy</div>
+  <div class="fgrid" id="vegGrid"></div>
+
+  <div class="cat terra">Foods I eat often</div>
+
+  <div class="cat cat-sub">Rice &amp; Grains</div>
+  <div class="fgrid" id="grainGrid"></div>
+  <div class="cat cat-sub">Noodles</div>
+  <div class="fgrid" id="noodleGrid"></div>
+  <div class="cat cat-sub">Protein</div>
+  <div class="fgrid" id="proteinGrid"></div>
+  <div class="cat cat-sub">Drinks &amp; Snacks</div>
+  <div class="fgrid" id="drinkGrid"></div>
+  <div class="cat cat-sub">Cooking &amp; Condiments</div>
+  <div class="fgrid" id="cookGrid"></div>
+
+  <button class="btn-p" id="toS2btn" disabled onclick="goTo(2)">See My Suggestions</button>
+</div>
+
+<!-- STEP 2 -->
+<div class="screen" id="s2">
+  <p class="intro">Tap the changes you want to try. Choose as many or as few as you like.</p>
+  <div class="sec-hdr">
+    <span class="sec-pill add">Add more</span>
+    <div class="sec-divider"></div>
+  </div>
+  <div id="addList"></div>
+  <div class="sec-hdr" style="margin-top:18px;">
+    <span class="sec-pill swap">Healthier swaps</span>
+    <div class="sec-divider"></div>
+  </div>
+  <div id="swapList"></div>
+  <button class="btn-p" id="toS3btn" disabled onclick="goTo(3)">See My Plan</button>
+  <button class="btn-s" onclick="goTo(1)">← Change my foods</button>
+</div>
+
+<!-- STEP 3 -->
+<div class="screen" id="s3">
+  <div class="plan-box" id="planBox"></div>
+  <div class="remind">
+    Small changes add up.<br>
+    <strong>One step at a time is enough.</strong><br>
+    <span style="font-size:12px;opacity:.85;">Bring this plan to your next visit.</span>
+  </div>
+  <button class="btn-s" style="margin-top:12px;" onclick="goTo(2)">← Back to suggestions</button>
+</div>
+</div>
+
+<script>
+const vegData = {
+  'bok-choy':    {name:'Bok choy',       tips:['Add to soups or congee at the end of cooking','Stir-fry with a little garlic and canola oil'],     related:['yu-choy','napa']},
+  'gai-lan':     {name:'Gai lan',        tips:['Steam and drizzle with a small splash of soy sauce','Blanch and add to noodle bowls'],              related:['bok-choy','yu-choy']},
+  'yu-choy':     {name:'Yu choy',        tips:['Blanch quickly — just 1–2 minutes','Add to soups or serve as a side dish'],                       related:['bok-choy','gai-lan']},
+  'napa':        {name:'Napa cabbage',   tips:['Add to hot pot, soups, or stir-fries','Cook down with tofu for a simple dish'],                    related:['bok-choy','watercress']},
+  'bitter-melon':{name:'Bitter melon',   tips:['Stir-fry with eggs or black bean sauce','Slice thin — it softens the bitterness'],                 related:['eggplant','winter-melon']},
+  'mushrooms':   {name:'Mushrooms',      tips:['Add dried shiitake to soups and braises','Fresh mushrooms stir-fry quickly with garlic'],          related:['eggplant','bamboo']},
+  'eggplant':    {name:'Eggplant',       tips:['Steam and top with garlic sauce — less oil than frying','Braise with tofu and a little soy sauce'], related:['mushrooms','bitter-melon']},
+  'snow-peas':   {name:'Snow peas',      tips:['Stir-fry for just 1–2 minutes to keep them crisp','Add to fried rice or noodles for extra fiber'], related:['bean-sprouts','gai-lan']},
+  'bean-sprouts':{name:'Bean sprouts',   tips:['Add to noodle soup just before eating','Stir-fry quickly — they cook in under a minute'],          related:['snow-peas','watercress']},
+  'watercress':  {name:'Watercress',     tips:['Simmer in soup for 10 minutes — classic and easy','Rich in iron — good to eat often'],              related:['spinach','napa']},
+  'spinach':     {name:'Spinach',        tips:['Add to soups or stir-fries at the last minute','Blanch and toss with sesame oil and low-sodium soy'],related:['watercress','yu-choy']},
+  'daikon':      {name:'Daikon radish',  tips:['Simmer in soups and braises — absorbs flavor well','Add to congee or hot pot'],                    related:['winter-melon','napa']},
+  'winter-melon':{name:'Winter melon',   tips:['Simmer in clear soup with lean pork or tofu','Very filling — helps you eat less rice'],             related:['daikon','bitter-melon']},
+  'bamboo':      {name:'Bamboo shoots',  tips:['Add to stir-fries and braises for extra fiber','Use canned or fresh — rinse well before cooking'], related:['mushrooms','snow-peas']},
+};
+
+const swapData = {
+  'rice-full':      {from:'Full bowl of white rice',              to:'Fill your bowl halfway',                     note:'Add more vegetables to feel full.'},
+  'congee':         {from:'Plain white rice congee',              to:'Add barley (yi mi) to your congee',          note:'Traditional — also good for digestion.'},
+  'fried-rice':     {from:'Fried rice',                          to:'Steamed rice stir-fried with less oil',       note:'Use ½ tablespoon of oil instead of pouring.'},
+  'sticky-rice':    {from:'Sticky / glutinous rice',             to:'Mix ½ white + ½ brown rice',                 note:'Brown rice has more fiber — slows blood sugar rise.'},
+  'instant-noodles':{from:'Instant noodles',                     to:'Soba or rice noodles with vegetables',        note:'Skip the seasoning packet — very high in salt.'},
+  'lo-mein':        {from:'Lo mein / chow mein',                 to:'Stir-fried noodles with extra vegetables',    note:'Add bok choy, bean sprouts, or mushrooms.'},
+  'wonton-noodles': {from:'Wonton noodle soup broth',            to:'Drink less broth — eat the solids',           note:'Broth can be high in sodium.'},
+  'char-siu':       {from:'Char siu / BBQ pork',                 to:'Steamed fish or tofu instead',               note:'Or have a smaller portion of char siu as a side.'},
+  'pork-belly':     {from:'Fatty pork belly',                    to:'Lean pork, chicken, or tofu',                note:'Braising or steaming uses less added fat.'},
+  'fried-protein':  {from:'Fried chicken or fish',               to:'Steamed, poached, or baked instead',          note:'Same protein — less oil.'},
+  'salted-fish':    {from:'Salted fish / preserved meat',        to:'Fresh or frozen fish, lightly seasoned',      note:'Much lower in sodium.'},
+  'bubble-tea':     {from:'Bubble tea',                          to:'Plain tea — hot or iced, no sugar',           note:'One bubble tea can have 10+ teaspoons of sugar.'},
+  'sweet-soy':      {from:'Sweetened soy milk',                  to:'Unsweetened soy milk',                       note:'Same nutrition — without the added sugar.'},
+  'pastry':         {from:'Pineapple buns / egg tarts',          to:'Fresh fruit or plain tofu pudding',           note:'Less sugar and fat — still satisfying.'},
+  'dessert-soup':   {from:'Dessert soups with rock sugar',       to:'Use half the sugar, or skip it',             note:'The flavor is still there — sweetness is habit.'},
+  'soy-sauce':      {from:'Soy sauce (1+ tablespoons per meal)', to:'Low-sodium soy sauce — a small splash',      note:'Same taste — much less salt.'},
+  'oyster-sauce':   {from:'Oyster / hoisin sauce',               to:'Use just 1 teaspoon instead of spooning',    note:'High in sugar and sodium.'},
+  'cooking-oil':    {from:'Cooking oil (2+ tablespoons per dish)','to':'1 thumb-sized amount of oil per dish',    note:'Canola or light olive oil are good choices.'},
+  'preserved-veg':  {from:'Pickled / preserved vegetables',      to:'Fresh or lightly cooked vegetables',         note:'Try bok choy, gai lan, or yu choy.'},
+};
+
+const categories = {
+  veg:    [{id:'bok-choy',l:'Bok choy'},{id:'gai-lan',l:'Gai lan'},{id:'yu-choy',l:'Yu choy'},{id:'napa',l:'Napa cabbage'},{id:'bitter-melon',l:'Bitter melon'},{id:'mushrooms',l:'Mushrooms'},{id:'eggplant',l:'Eggplant'},{id:'snow-peas',l:'Snow peas'},{id:'bean-sprouts',l:'Bean sprouts'},{id:'watercress',l:'Watercress'},{id:'spinach',l:'Spinach'},{id:'daikon',l:'Daikon'},{id:'winter-melon',l:'Winter melon'},{id:'bamboo',l:'Bamboo shoots'}],
+  grain:  [{id:'rice-full',l:'White rice — full bowl'},{id:'congee',l:'White rice congee'},{id:'fried-rice',l:'Fried rice'},{id:'sticky-rice',l:'Sticky / glutinous rice'}],
+  noodle: [{id:'instant-noodles',l:'Instant noodles'},{id:'lo-mein',l:'Lo mein / chow mein'},{id:'wonton-noodles',l:'Wonton noodle soup'}],
+  protein:[{id:'char-siu',l:'Char siu / BBQ pork'},{id:'pork-belly',l:'Pork belly / fatty pork'},{id:'fried-protein',l:'Fried chicken or fish'},{id:'salted-fish',l:'Salted fish / preserved meat'}],
+  drink:  [{id:'bubble-tea',l:'Bubble tea'},{id:'sweet-soy',l:'Sweetened soy milk'},{id:'pastry',l:'Pineapple buns / egg tarts'},{id:'dessert-soup',l:'Dessert soups with sugar'}],
+  cook:   [{id:'soy-sauce',l:'Soy sauce (1+ tbsp per meal)'},{id:'oyster-sauce',l:'Oyster / hoisin sauce'},{id:'cooking-oil',l:'Cooking oil (2+ tbsp per dish)'},{id:'preserved-veg',l:'Pickled / preserved vegetables'}],
+};
+
+let selVeg=new Set(), selSwap=new Set(), committed=new Map();
+
+function buildGrid(gridId, items, set, isTerra) {
+  const el=document.getElementById(gridId);
+  items.forEach(item=>{
+    const btn=document.createElement('button');
+    btn.className='fbtn'+(isTerra?' terra-theme':'');
+    btn.dataset.id=item.id;
+    btn.innerHTML=`<div class="chk"></div>${item.l}`;
+    btn.onclick=()=>{
+      if(set.has(item.id)){set.delete(item.id);btn.classList.remove('sel');}
+      else{set.add(item.id);btn.classList.add('sel');}
+      document.getElementById('toS2btn').disabled=(selVeg.size+selSwap.size)===0;
+    };
+    el.appendChild(btn);
+  });
+}
+
+buildGrid('vegGrid',    categories.veg,     selVeg,  false);
+buildGrid('grainGrid',  categories.grain,   selSwap, true);
+buildGrid('noodleGrid', categories.noodle,  selSwap, true);
+buildGrid('proteinGrid',categories.protein, selSwap, true);
+buildGrid('drinkGrid',  categories.drink,   selSwap, true);
+buildGrid('cookGrid',   categories.cook,    selSwap, true);
+
+function goTo(step){
+  [1,2,3].forEach(i=>{
+    document.getElementById('s'+i).classList.toggle('active',i===step);
+    document.getElementById('dot'+i).className='sdot '+(i<step?'done':i===step?'active':'future');
+    if(i<3) document.getElementById('line'+i).className='sline '+(i<step?'done':'');
+  });
+  if(step===2) renderStep2();
+  if(step===3) renderStep3();
+}
+
+function makeCard(id, labelTxt, labelClass, mainTxt, noteTxt, cardClass){
+  const card=document.createElement('div');
+  card.className=`card ${cardClass}`+(committed.has(id)?' committed':'');
+  card.innerHTML=`<div class="cchk"></div><div><div class="card-label ${labelClass}">${labelTxt}</div><div class="card-main">${mainTxt}</div>${noteTxt?`<div class="card-note">${noteTxt}</div>`:''}</div>`;
+  card.onclick=()=>{
+    if(committed.has(id)){committed.delete(id);card.classList.remove('committed');}
+    else{committed.set(id,{main:mainTxt,type:cardClass==='add-card'?'add':'swap'});card.classList.add('committed');}
+    const n=committed.size;
+    const btn=document.getElementById('toS3btn');
+    btn.disabled=n===0;
+    btn.textContent=n>0?`See My Plan (${n} step${n>1?'s':''})`:'See My Plan';
+  };
+  return card;
+}
+
+const universalTips=[
+  'Aim for 2 vegetable dishes at every meal',
+  'Add vegetables to soups and congee — they cook quickly and absorb flavor',
+  'Eat vegetables first, then rice — this helps your blood sugar',
+];
+
+function renderStep2(){
+  committed.clear();
+  document.getElementById('toS3btn').disabled=true;
+  document.getElementById('toS3btn').textContent='See My Plan';
+
+  const addList=document.getElementById('addList');
+  addList.innerHTML='';
+  const shown=new Set();
+
+  selVeg.forEach(vid=>{
+    const v=vegData[vid]; if(!v) return;
+    v.tips.forEach((tip,i)=>{
+      const uid=`${vid}-tip${i}`;
+      if(!shown.has(uid)){shown.add(uid);addList.appendChild(makeCard(uid,`Eat more: ${v.name}`,'add',tip,'','add-card'));}
+    });
+    v.related.slice(0,1).forEach(rid=>{
+      if(!selVeg.has(rid)&&vegData[rid]){
+        const uid=`try-${rid}`;
+        if(!shown.has(uid)){shown.add(uid);addList.appendChild(makeCard(uid,'Try this vegetable too','add',vegData[rid].name,vegData[rid].tips[0],'add-card'));}
+      }
+    });
+  });
+
+  const ubBox=document.createElement('div');
+  ubBox.className='universal-box';
+  ubBox.innerHTML='<div class="ub-title">Tips for eating more vegetables</div>'+
+    universalTips.map(t=>`<div class="ub-item"><div class="ub-dot"></div><div>${t}</div></div>`).join('');
+  addList.appendChild(ubBox);
+
+  const swapList=document.getElementById('swapList');
+  swapList.innerHTML='';
+  if(selSwap.size===0){
+    swapList.innerHTML='<div class="none-msg">You did not select any foods above.<br>Go back to add some.</div>';
+    return;
+  }
+  selSwap.forEach(sid=>{
+    const s=swapData[sid]; if(!s) return;
+    swapList.appendChild(makeCard(sid,`Instead of: ${s.from}`,'swap',s.to,s.note,'swap-card'));
+  });
+}
+
+function renderStep3(){
+  const box=document.getElementById('planBox');
+  if(committed.size===0){
+    box.innerHTML='<div class="plan-title">Your Plan</div><p style="font-size:13px;opacity:.75;">Go back and tap the steps you want to try.</p>';
+    return;
+  }
+  let html=`<div class="plan-title">Your Plan — ${committed.size} step${committed.size>1?'s':''}</div>`;
+  committed.forEach(val=>{
+    const badge=val.type==='add'?'<span class="plan-badge add">Add</span>':'<span class="plan-badge swap">Swap</span>';
+    html+=`<div class="plan-item">${badge}<div class="plan-txt">${val.main}</div></div>`;
+  });
+  box.innerHTML=html;
+}
+</script>
+</body>
+</html>
