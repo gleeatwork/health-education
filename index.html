@@ -2,57 +2,232 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Asian Health Services — Health Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --green:#1B5E3B;--green-mid:#2E7D52;--green-lt:#EAF4EE;--green-bd:#B2D8C0;
-  --terra:#C05A2A;--terra-lt:#FBF0EA;--terra-bd:#E8C4AE;
-  --cream:#FDF8F2;--gold:#C9973A;--gold-lt:#FDF6E7;
-  --txt:#222;--txt2:#555;--txt3:#888;
+:root {
+  --green: #1B5E3B;
+  --green2: #2E7D52;
+  --green-lt: #EAF4EE;
+  --green-bd: #B2D8C0;
+  --amber: #F59E0B;
+  --txt1: #1E1E1E;
+  --txt2: #444;
+  --txt3: #888;
+  --bg: #F7F6F2;
+  --card-bg: #FFFFFF;
+  --border: #E4E2DC;
 }
-body{font-family:sans-serif;background:#E8E4DC;min-height:100vh;}
-.wrap{max-width:390px;margin:0 auto;background:var(--cream);min-height:100vh;}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--txt1);
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+.wrap {
+  max-width: 520px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
 /* HEADER */
-.hdr{background:var(--green);color:white;padding:20px 20px 18px;}
-.hdr-org{font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.65;margin-bottom:4px;}
-.hdr-title{font-size:22px;font-weight:700;font-family:Georgia,serif;line-height:1.2;margin-bottom:12px;}
-.hdr-sub{font-size:12.5px;opacity:.8;line-height:1.5;}
+.hdr {
+  background: var(--green);
+  color: white;
+  padding: 28px 24px 22px;
+}
+.hdr-org {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin-bottom: 6px;
+}
+.hdr-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.hdr-sub {
+  font-size: 14px;
+  opacity: 0.8;
+  line-height: 1.5;
+}
 
-/* LANGUAGE SELECTOR */
-.lang-bar{background:#14482D;padding:10px 20px;display:flex;gap:6px;align-items:center;}
-.lang-label{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase;margin-right:4px;flex-shrink:0;}
-.lang-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;color:rgba(255,255,255,.7);font-size:12px;padding:4px 12px;cursor:pointer;font-family:sans-serif;transition:all .15s;white-space:nowrap;}
-.lang-btn:hover{background:rgba(255,255,255,.2);}
-.lang-btn.active{background:white;color:var(--green);font-weight:700;border-color:white;}
+/* LANGUAGE BAR */
+.lang-bar {
+  background: #F0EEE8;
+  border-bottom: 1px solid var(--border);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.lang-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--txt3);
+  margin-right: 4px;
+}
+.lang-btn {
+  border: 1.5px solid var(--border);
+  background: white;
+  color: var(--txt2);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.lang-btn:hover { border-color: var(--green2); color: var(--green); }
+.lang-btn.active {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
+}
 
 /* CONTENT */
-.content{padding:20px 18px 32px;}
-.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--green);margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid var(--green-bd);}
+.content {
+  padding: 20px 20px 28px;
+  flex: 1;
+}
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--txt3);
+  margin-bottom: 14px;
+}
 
-/* TOPIC CARDS */
-.card{background:white;border:1.5px solid #DDE8E1;border-radius:14px;padding:16px;margin-bottom:12px;text-decoration:none;display:block;transition:border-color .15s,box-shadow .15s;}
-.card:hover{border-color:var(--green-mid);}
-.card.coming-soon{opacity:.6;cursor:default;pointer-events:none;}
-.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;gap:10px;}
-.card-icon{width:40px;height:40px;border-radius:10px;background:var(--green-lt);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
-.card-icon.soon{background:#F4F4EF;}
-.card-badge{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:3px 9px;border-radius:20px;flex-shrink:0;margin-top:2px;}
-.card-badge.active{background:var(--green-lt);color:var(--green);}
-.card-badge.soon{background:#F0EFE8;color:#999;}
-.card-title{font-size:15px;font-weight:700;color:var(--txt);margin-bottom:5px;line-height:1.3;}
-.card-desc{font-size:12.5px;color:var(--txt2);line-height:1.5;margin-bottom:12px;}
-.card-btn{display:inline-block;background:var(--green);color:white;border-radius:8px;padding:9px 18px;font-size:13px;font-weight:600;font-family:sans-serif;text-decoration:none;}
-.card.coming-soon .card-btn{background:#E0DDD6;color:#999;}
-.card-lang-note{font-size:11px;color:var(--txt3);margin-top:8px;font-style:italic;}
+/* CARDS */
+.card {
+  display: block;
+  background: var(--card-bg);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 18px 16px;
+  margin-bottom: 12px;
+  text-decoration: none;
+  color: var(--txt1);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.card:hover {
+  border-color: var(--green2);
+  box-shadow: 0 4px 16px rgba(27,94,59,0.10);
+}
+.card.coming-soon {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.card-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+.card-icon.soon { filter: grayscale(1); }
+.card-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-radius: 20px;
+  padding: 3px 10px;
+}
+.card-badge.active {
+  background: var(--green-lt);
+  color: var(--green);
+  border: 1px solid var(--green-bd);
+}
+.card-badge.soon {
+  background: #F0EEE8;
+  color: var(--txt3);
+  border: 1px solid var(--border);
+}
+.card-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--txt1);
+}
+.card-desc {
+  font-size: 14px;
+  color: var(--txt2);
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+.card-btn {
+  display: inline-block;
+  background: var(--green);
+  color: white;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+}
+.card.coming-soon .card-btn {
+  background: #E0DDD6;
+  color: #999;
+}
+.card-lang-note {
+  font-size: 12px;
+  color: var(--txt3);
+  margin-top: 10px;
+  font-style: italic;
+}
 
 /* FOOTER */
-.footer{background:var(--green);color:white;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;}
-.footer-name{font-size:12px;font-weight:700;letter-spacing:.05em;}
-.footer-detail{font-size:11px;opacity:.65;margin-top:2px;}
-.footer-right{text-align:right;font-size:11px;opacity:.65;}
+.footer {
+  background: var(--green);
+  color: white;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-name {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.footer-detail {
+  font-size: 12px;
+  opacity: 0.65;
+  margin-top: 2px;
+}
+.footer-right {
+  text-align: right;
+  font-size: 12px;
+  opacity: 0.65;
+}
 </style>
 </head>
 <body>
@@ -60,7 +235,7 @@ body{font-family:sans-serif;background:#E8E4DC;min-height:100vh;}
 
   <!-- HEADER -->
   <div class="hdr">
-    <div class="hdr-org">Asian Health Services</div>
+    <div class="hdr-org">Asian Health Services · Oakland, CA</div>
     <div class="hdr-title" data-i18n="title">Health Education</div>
     <div class="hdr-sub" data-i18n="subtitle">Choose a topic to learn more about your health.</div>
   </div>
@@ -68,37 +243,37 @@ body{font-family:sans-serif;background:#E8E4DC;min-height:100vh;}
   <!-- LANGUAGE BAR -->
   <div class="lang-bar">
     <span class="lang-label">Language</span>
-    <button class="lang-btn active" onclick="setLang('en')">English</button>
-    <button class="lang-btn" onclick="setLang('zh')">中文</button>
-    <button class="lang-btn" onclick="setLang('vi')">Tiếng Việt</button>
+    <button class="lang-btn active" onclick="setLang('en', event)">English</button>
+    <button class="lang-btn" onclick="setLang('zh', event)">中文</button>
+    <button class="lang-btn" onclick="setLang('vi', event)">Tiếng Việt</button>
   </div>
 
   <!-- CARDS -->
   <div class="content">
     <div class="section-label" data-i18n="section">Topics</div>
 
-    <!-- ACTIVE: Nutrition -->
+    <!-- CARD 1: Interactive Food Plan -->
     <a class="card" href="nutrition/index.html">
       <div class="card-top">
         <div class="card-icon">🥦</div>
         <span class="card-badge active" data-i18n="badge-available">Available</span>
       </div>
-      <div class="card-title" data-i18n="card1-title">Eating Well</div>
+      <div class="card-title" data-i18n="card1-title">Eating Well — Interactive Plan</div>
       <div class="card-desc" data-i18n="card1-desc">Learn how to eat healthier using foods you already enjoy. Get a personal plan with simple swaps.</div>
       <div><span class="card-btn" data-i18n="card-open">Open</span></div>
       <div class="card-lang-note" data-i18n="card1-lang">Available in English</div>
     </a>
 
-    <!-- HANDOUT CARD -->
-    <a class="card" id="handout-card" href="eating-well-handout-EN-final.html">
+    <!-- CARD 2: Handout -->
+    <a class="card" id="handout-card" href="eating-well-handout-EN-mobile.html">
       <div class="card-top">
         <div class="card-icon">📄</div>
         <span class="card-badge active" data-i18n="badge-available">Available</span>
       </div>
       <div class="card-title" data-i18n="handout-title">Eating Well — Handout</div>
-      <div class="card-desc" data-i18n="handout-desc">A printed guide to healthy eating. Tips on food choices, portions, and simple swaps.</div>
+      <div class="card-desc" data-i18n="handout-desc">A guide to healthy eating. Tips on food choices, portions, and simple swaps.</div>
       <div><span class="card-btn" data-i18n="card-open">Open</span></div>
-      <div class="card-lang-note" data-i18n="handout-lang">Available in English</div>
+      <div class="card-lang-note" data-i18n="handout-lang">Available in English and Chinese</div>
     </a>
 
     <!-- COMING SOON slots -->
@@ -107,8 +282,8 @@ body{font-family:sans-serif;background:#E8E4DC;min-height:100vh;}
         <div class="card-icon soon">🩺</div>
         <span class="card-badge soon" data-i18n="badge-soon">Coming Soon</span>
       </div>
-      <div class="card-title" data-i18n="card2-title">Managing Diabetes</div>
-      <div class="card-desc" data-i18n="card2-desc">Understanding blood sugar and what you can do each day.</div>
+      <div class="card-title" data-i18n="card3-title">Managing Diabetes</div>
+      <div class="card-desc" data-i18n="card3-desc">Understanding blood sugar and what you can do each day.</div>
       <div><span class="card-btn" data-i18n="badge-soon">Coming Soon</span></div>
     </div>
 
@@ -117,8 +292,8 @@ body{font-family:sans-serif;background:#E8E4DC;min-height:100vh;}
         <div class="card-icon soon">❤️</div>
         <span class="card-badge soon" data-i18n="badge-soon">Coming Soon</span>
       </div>
-      <div class="card-title" data-i18n="card3-title">Blood Pressure</div>
-      <div class="card-desc" data-i18n="card3-desc">Simple steps to keep your heart healthy.</div>
+      <div class="card-title" data-i18n="card4-title">Blood Pressure</div>
+      <div class="card-desc" data-i18n="card4-desc">Simple steps to keep your heart healthy.</div>
       <div><span class="card-btn" data-i18n="badge-soon">Coming Soon</span></div>
     </div>
 
@@ -127,8 +302,8 @@ body{font-family:sans-serif;background:#E8E4DC;min-height:100vh;}
         <div class="card-icon soon">🚶</div>
         <span class="card-badge soon" data-i18n="badge-soon">Coming Soon</span>
       </div>
-      <div class="card-title" data-i18n="card4-title">Staying Active</div>
-      <div class="card-desc" data-i18n="card4-desc">Easy ways to move more, built around your daily life.</div>
+      <div class="card-title" data-i18n="card5-title">Staying Active</div>
+      <div class="card-desc" data-i18n="card5-desc">Easy ways to move more, built around your daily life.</div>
       <div><span class="card-btn" data-i18n="badge-soon">Coming Soon</span></div>
     </div>
 
@@ -137,8 +312,8 @@ body{font-family:sans-serif;background:#E8E4DC;min-height:100vh;}
         <div class="card-icon soon">😴</div>
         <span class="card-badge soon" data-i18n="badge-soon">Coming Soon</span>
       </div>
-      <div class="card-title" data-i18n="card5-title">Sleep &amp; Stress</div>
-      <div class="card-desc" data-i18n="card5-desc">How rest and stress affect your health, and what helps.</div>
+      <div class="card-title" data-i18n="card6-title">Sleep &amp; Stress</div>
+      <div class="card-desc" data-i18n="card6-desc">How rest and stress affect your health, and what helps.</div>
       <div><span class="card-btn" data-i18n="badge-soon">Coming Soon</span></div>
     </div>
 
@@ -151,7 +326,6 @@ body{font-family:sans-serif;background:#E8E4DC;min-height:100vh;}
       <div class="footer-detail">Oakland, CA</div>
     </div>
     <div class="footer-right">
-      <div>[Clinic phone]</div>
       <div>asianhealth.org</div>
     </div>
   </div>
@@ -161,92 +335,92 @@ body{font-family:sans-serif;background:#E8E4DC;min-height:100vh;}
 <script>
 const i18n = {
   en: {
-    'title':         'Health Education',
-    'subtitle':      'Choose a topic to learn more about your health.',
-    'section':       'Topics',
+    'title':          'Health Education',
+    'subtitle':       'Choose a topic to learn more about your health.',
+    'section':        'Topics',
     'badge-available':'Available',
-    'badge-soon':    'Coming Soon',
-    'card-open':     'Open',
-    'card1-title':   'Eating Well — Interactive Plan',
-    'card1-desc':    'Learn how to eat healthier using foods you already enjoy. Get a personal plan with simple swaps.',
-    'card1-lang':    'Available in English',
-    'handout-title': 'Eating Well — Handout',
-    'handout-desc':  'A printed guide to healthy eating. Tips on food choices, portions, and simple swaps.',
-    'handout-lang':  'Available in English',
-    'handout-href':  'eating-well-handout-EN-final.html',
-    'card2-title':   'Managing Diabetes',
-    'card2-desc':    'Understanding blood sugar and what you can do each day.',
-    'card3-title':   'Blood Pressure',
-    'card3-desc':    'Simple steps to keep your heart healthy.',
-    'card4-title':   'Staying Active',
-    'card4-desc':    'Easy ways to move more, built around your daily life.',
-    'card5-title':   'Sleep & Stress',
-    'card5-desc':    'How rest and stress affect your health, and what helps.',
+    'badge-soon':     'Coming Soon',
+    'card-open':      'Open',
+    'card1-title':    'Eating Well — Interactive Plan',
+    'card1-desc':     'Learn how to eat healthier using foods you already enjoy. Get a personal plan with simple swaps.',
+    'card1-lang':     'Available in English',
+    'handout-title':  'Eating Well — Handout',
+    'handout-desc':   'A guide to healthy eating. Tips on food choices, portions, and simple swaps.',
+    'handout-lang':   'Available in English and Chinese',
+    'handout-href':   'eating-well-handout-EN-mobile.html',
+    'card3-title':    'Managing Diabetes',
+    'card3-desc':     'Understanding blood sugar and what you can do each day.',
+    'card4-title':    'Blood Pressure',
+    'card4-desc':     'Simple steps to keep your heart healthy.',
+    'card5-title':    'Staying Active',
+    'card5-desc':     'Easy ways to move more, built around your daily life.',
+    'card6-title':    'Sleep & Stress',
+    'card6-desc':     'How rest and stress affect your health, and what helps.',
   },
   zh: {
-    'title':         '健康教育',
-    'subtitle':      '請選擇一個主題，了解更多有關您的健康資訊。',
-    'section':       '主題',
-    'badge-available':'現已提供',
-    'badge-soon':    '即將推出',
-    'card-open':     '開始',
-    'card1-title':   '健康飲食 — 互動計劃',
-    'card1-desc':    '學習如何用您喜愛的食物吃得更健康，並獲得適合您的個人飲食計劃。',
-    'card1-lang':    '目前只提供英文版本',
-    'handout-title': '健康飲食 — 資料單張',
-    'handout-desc':  '健康飲食印刷指南。包括食物選擇、份量和簡單替換的建議。',
-    'handout-lang':  '提供中文版本',
-    'handout-href':  'eating-well-handout-ZH-final.html',
-    'card2-title':   '糖尿病管理',
-    'card2-desc':    '了解血糖，以及您每天可以做的事情。',
-    'card3-title':   '血壓管理',
-    'card3-desc':    '保持心臟健康的簡單步驟。',
-    'card4-title':   '保持活躍',
-    'card4-desc':    '融入日常生活的簡單運動方法。',
-    'card5-title':   '睡眠與壓力',
-    'card5-desc':    '休息和壓力如何影響您的健康，以及有什麼方法可以幫助您。',
+    'title':          '健康教育',
+    'subtitle':       '请选择一个主题，了解更多有关您的健康资讯。',
+    'section':        '主题',
+    'badge-available':'现已提供',
+    'badge-soon':     '即将推出',
+    'card-open':      '开始',
+    'card1-title':    '健康饮食 — 互动计划',
+    'card1-desc':     '学习如何用您喜爱的食物吃得更健康，并获得适合您的个人饮食计划。',
+    'card1-lang':     '目前只提供英文版本',
+    'handout-title':  '健康饮食 — 资料单张',
+    'handout-desc':   '健康饮食指南。关于食物选择、份量和简单替换的建议。',
+    'handout-lang':   '提供中文版本',
+    'handout-href':   'eating-well-handout-ZH-mobile.html',
+    'card3-title':    '糖尿病管理',
+    'card3-desc':     '了解血糖，以及您每天可以做的事情。',
+    'card4-title':    '血压管理',
+    'card4-desc':     '保持心脏健康的简单步骤。',
+    'card5-title':    '保持活跃',
+    'card5-desc':     '融入日常生活的简单运动方法。',
+    'card6-title':    '睡眠与压力',
+    'card6-desc':     '休息和压力如何影响您的健康，以及有什么方法可以帮助您。',
   },
   vi: {
-    'title':         'Giáo Dục Sức Khỏe',
-    'subtitle':      'Chọn một chủ đề để tìm hiểu thêm về sức khỏe của bạn.',
-    'section':       'Chủ Đề',
+    'title':          'Giáo Dục Sức Khỏe',
+    'subtitle':       'Chọn một chủ đề để tìm hiểu thêm về sức khỏe của bạn.',
+    'section':        'Chủ Đề',
     'badge-available':'Có sẵn',
-    'badge-soon':    'Sắp ra mắt',
-    'card-open':     'Mở',
-    'card1-title':   'Ăn Uống Lành Mạnh — Kế Hoạch Tương Tác',
-    'card1-desc':    'Tìm hiểu cách ăn uống lành mạnh hơn với những thực phẩm bạn yêu thích. Nhận kế hoạch cá nhân với các gợi ý đơn giản.',
-    'card1-lang':    'Hiện chỉ có bằng tiếng Anh',
-    'handout-title': 'Ăn Uống Lành Mạnh — Tài Liệu',
-    'handout-desc':  'Hướng dẫn ăn uống lành mạnh. Gợi ý về lựa chọn thực phẩm, khẩu phần và các thay đổi đơn giản.',
-    'handout-lang':  'Hiện chỉ có bằng tiếng Anh',
-    'handout-href':  'eating-well-handout-EN-final.html',
-    'card2-title':   'Quản Lý Bệnh Tiểu Đường',
-    'card2-desc':    'Hiểu về đường huyết và những gì bạn có thể làm mỗi ngày.',
-    'card3-title':   'Huyết Áp',
-    'card3-desc':    'Các bước đơn giản để giữ cho trái tim khỏe mạnh.',
-    'card4-title':   'Duy Trì Vận Động',
-    'card4-desc':    'Những cách dễ dàng để vận động nhiều hơn trong cuộc sống hàng ngày.',
-    'card5-title':   'Giấc Ngủ và Căng Thẳng',
-    'card5-desc':    'Nghỉ ngơi và căng thẳng ảnh hưởng đến sức khỏe của bạn như thế nào, và điều gì có thể giúp ích.',
+    'badge-soon':     'Sắp ra mắt',
+    'card-open':      'Mở',
+    'card1-title':    'Ăn Uống Lành Mạnh — Kế Hoạch Cá Nhân',
+    'card1-desc':     'Tìm hiểu cách ăn uống lành mạnh hơn với những thực phẩm bạn yêu thích. Nhận kế hoạch cá nhân với các gợi ý đơn giản.',
+    'card1-lang':     'Hiện chỉ có bằng tiếng Anh',
+    'handout-title':  'Ăn Uống Lành Mạnh — Tài Liệu',
+    'handout-desc':   'Hướng dẫn ăn uống lành mạnh. Gợi ý về lựa chọn thực phẩm, khẩu phần và các thay đổi đơn giản.',
+    'handout-lang':   'Hiện chỉ có bằng tiếng Anh và tiếng Trung',
+    'handout-href':   'eating-well-handout-EN-mobile.html',
+    'card3-title':    'Quản Lý Bệnh Tiểu Đường',
+    'card3-desc':     'Hiểu về đường huyết và những gì bạn có thể làm mỗi ngày.',
+    'card4-title':    'Huyết Áp',
+    'card4-desc':     'Các bước đơn giản để giữ cho trái tim khỏe mạnh.',
+    'card5-title':    'Duy Trì Vận Động',
+    'card5-desc':     'Những cách dễ dàng để vận động nhiều hơn trong cuộc sống hàng ngày.',
+    'card6-title':    'Giấc Ngủ và Căng Thẳng',
+    'card6-desc':     'Nghỉ ngơi và căng thẳng ảnh hưởng đến sức khỏe của bạn như thế nào, và điều gì có thể giúp ích.',
   }
 };
 
 let currentLang = 'en';
 
-function setLang(lang) {
+function setLang(lang, e) {
   currentLang = lang;
   document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
+  if (e && e.target) e.target.classList.add('active');
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (i18n[lang][key]) el.textContent = i18n[lang][key];
   });
-  // Update handout card link dynamically
+  // Update handout card href dynamically
   const handoutCard = document.getElementById('handout-card');
   if (handoutCard && i18n[lang]['handout-href']) {
     handoutCard.href = i18n[lang]['handout-href'];
   }
-  document.documentElement.lang = lang === 'zh' ? 'zh-TW' : lang;
+  document.documentElement.lang = lang === 'zh' ? 'zh-Hans' : lang;
 }
 </script>
 </body>
